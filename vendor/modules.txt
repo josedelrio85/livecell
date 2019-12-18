@@ -1,0 +1,27 @@
+# github.com/DATA-DOG/go-sqlmock v1.3.3
+github.com/DATA-DOG/go-sqlmock
+# github.com/bysidecar/voalarm v1.0.1
+github.com/bysidecar/voalarm
+# github.com/davecgh/go-spew v1.1.1
+github.com/davecgh/go-spew/spew
+# github.com/go-sql-driver/mysql v1.4.1
+github.com/go-sql-driver/mysql
+# github.com/gorilla/mux v1.7.3
+github.com/gorilla/mux
+# github.com/gorilla/schema v1.1.0
+github.com/gorilla/schema
+# github.com/jinzhu/gorm v1.9.11
+github.com/jinzhu/gorm
+github.com/jinzhu/gorm/dialects/mysql
+# github.com/jinzhu/inflection v1.0.0
+github.com/jinzhu/inflection
+# github.com/pmezard/go-difflib v1.0.0
+github.com/pmezard/go-difflib/difflib
+# github.com/rs/cors v1.7.0
+github.com/rs/cors
+# github.com/stretchr/testify v1.4.0
+github.com/stretchr/testify/assert
+# google.golang.org/appengine v1.4.0
+google.golang.org/appengine/cloudsql
+# gopkg.in/yaml.v2 v2.2.2
+gopkg.in/yaml.v2
