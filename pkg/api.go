@@ -75,7 +75,7 @@ func (c *Client) process() ResultError {
 				msg := "Error retrieving Queue registry"
 				e := &errorLogger{msg, http.StatusInternalServerError, err, logError(err)}
 				e.sendAlarm()
-				outputChannel <- ResultError{res: "test", err: err}
+				outputChannel <- ResultError{res: msg, err: err}
 			}
 		}
 
@@ -84,16 +84,16 @@ func (c *Client) process() ResultError {
 			err := fmt.Errorf("%s", msg)
 			e := &errorLogger{msg, http.StatusInternalServerError, err, logError(err)}
 			e.sendAlarm()
-			outputChannel <- ResultError{res: "test2", err: err}
+			outputChannel <- ResultError{res: msg, err: err}
 		}
 
 		if err := c.Storer.Insert(&c.Live); err != nil {
 			msg := "Error inserting live lead"
 			e := &errorLogger{msg, http.StatusInternalServerError, err, logError(err)}
 			e.sendAlarm()
-			outputChannel <- ResultError{res: "test3", err: err}
+			outputChannel <- ResultError{res: msg, err: err}
 		}
-		outputChannel <- ResultError{res: "test4", err: nil}
+		outputChannel <- ResultError{res: "Succesful", err: nil}
 	}()
 	return <-outputChannel
 }
