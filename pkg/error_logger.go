@@ -19,7 +19,7 @@ type errorLogger struct {
 
 // sendAlarm to VictorOps plattform and format the error for more info
 func (e *errorLogger) sendAlarm() {
-	e.msg = fmt.Sprintf("%s %v", e.msg, e.err)
+	e.msg = fmt.Sprintf("Noname -> %s %v", e.msg, e.err)
 	log.Println(e.log)
 
 	mstype := voalarm.Acknowledgement
