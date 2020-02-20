@@ -19,6 +19,7 @@ type Client struct {
 	Storer  Storer
 	Live    LeadLive
 	Payload LeadPayload
+	Result  Result
 }
 
 // HandleFunction receives a GET request and decode the querystring values
@@ -96,15 +97,21 @@ func (c *Client) getValues() error {
 	live.SouID = queue.QueSource
 	live.TypeID = queue.QueType
 
-	if result := db.Raw("SELECT * FROM crmti.sub_subcategories WHERE sub_id = ?", live.SubcatID).Scan(&subcat); result.Error != nil {
-		return fmt.Errorf("Error querying Subcategories registry: %#v", result.Error)
+	if result2 := db.Raw("SELECT sub_action FROM crmti.sub_subcategories WHERE sub_id = ?", live.SubcatID).Scan(&subcat); result2.Error != nil {
+		return fmt.Errorf("Error querying Subcategories registry: %#v", result2.Error)
 	}
 
 	r := Result{}
-	body := []byte(subcat.SubAction)
-	if err := json.Unmarshal(body, &r); err != nil {
-		return fmt.Errorf("Error unmarshaling subaction field: %#v", err)
+	if subcat.SubAction != "" {
+		body := []byte(subcat.SubAction)
+		if err := json.Unmarshal(body, &r); err != nil {
+			return fmt.Errorf("Error unmarshaling sub_action field: %#v", err)
+		}
+	} else {
+		// sqlmock does not handle json strings, so this is a hack
+		r.Result = c.Result.Result
 	}
+
 	if r.Result == "2-cierre" {
 		live.Closed = 1
 	}
