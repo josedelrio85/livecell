@@ -11,7 +11,7 @@ type Subcat struct {
 	SubClosing  int    `sql:"name:sub_closing"`
 	SubUtil     int    `sql:"name:sub_util"`
 	SubChAuto   int    `sql:"name:sub_sch_auto"`
-	SubAux      int    `sql:"name:sub_aux"`
+	SubAux      string `sql:"name:sub_aux"`
 	SubCallback string `sql:"name:sub_callback"`
 }
 
