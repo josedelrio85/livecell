@@ -1,0 +1,78 @@
+version: 2
+jobs:
+  test:
+    docker:
+      - image: circleci/golang:1.12
+      - image: circleci/mysql:5.7
+        environment:
+          MYSQL_ROOT_PASSWORD: rootpw
+          MYSQL_DATABASE: test_db
+          MYSQL_USER: user
+          MYSQL_PASSWORD: passw0rd
+    steps:
+      - checkout
+      - run:
+          name: "Setup custom environment variables"
+          command: |
+            echo 'export DB_PORT="3306"' >> $BASH_ENV # Redirect MY_ENV_VAR into $BASH_ENV
+            echo 'export DB_HOST="127.0.0.1"' >> $BASH_ENV
+            echo 'export DB_USER="root"' >> $BASH_ENV
+            echo 'export DB_PASS="rootpw"' >> $BASH_ENV
+            echo 'export DB_NAME="test_db"' >> $BASH_ENV
+      - run:
+      # Our primary container isn't MYSQL so run a sleep command until it's ready.
+          name: Waiting for MySQL to be ready
+          command: |
+            for i in `seq 1 10`;
+            do
+              nc -z ${DB_HOST} ${DB_PORT} && echo Success && exit 0
+              echo -n .
+              sleep 1
+            done
+            echo Failed waiting for MySQL && exit 1
+      - run:
+          name: Install MySQL CLI; Create table for tests
+          command: |
+            sudo apt-get install default-mysql-client
+            mysql -h ${DB_HOST} -u ${DB_USER} -p${DB_PASS} ${DB_NAME} < .circleci/sql/data.sql
+      - run:
+          name: Execute go function
+          command: |
+            go vet -mod=vendor ./...
+            go test -mod=vendor -v ./...
+  build:
+    machine: true
+    steps:
+      - checkout
+      - run:
+          name: Install dependencies
+          working_directory: /
+          command: |
+            # install AWS CLI to interact with BySidecar's AWS resources
+            sudo apt-get -y -qq update
+            sudo apt-get -y install awscli
+      - run:
+          name: Set convenience environment variables
+          command: |
+            # set the AWS ECR Image name for the build
+            echo 'export IMAGE_NAME_LATEST="${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com/${ECR_REPOSITORY_NAME}:latest"'         >> $BASH_ENV
+            echo 'export IMAGE_NAME_COMMIT="${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com/${ECR_REPOSITORY_NAME}:${CIRCLE_SHA1}"' >> $BASH_ENV
+      - run:
+          name: Build image
+          command: |
+            eval $(aws ecr get-login --region $AWS_DEFAULT_REGION --no-include-email)
+            docker build -t $IMAGE_NAME_COMMIT .
+            docker tag $IMAGE_NAME_COMMIT $IMAGE_NAME_LATEST
+      - run:
+          name: Push image commit
+          command: |
+            docker push $IMAGE_NAME_COMMIT
+            docker push $IMAGE_NAME_LATEST
+workflows:
+  version: 2
+  test-build-deploy:
+    jobs:
+      - test
+      - build:
+          requires:
+            - test
