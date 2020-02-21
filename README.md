@@ -65,6 +65,9 @@ helm install --name [name] --namespace [namespace_name] ./helm-package \
 -f ./helm-package/values-pre.yaml | -f ./helm-package/values-pro.yaml
 ```
 
+*[pre] => livelead-pre
+*[pro] => livelead
+
 ### List helm charts
 
 ```bash
@@ -81,4 +84,8 @@ helm rollback [helm_name] [revision_number]
 
 ```bash
 helm delete [helm_name]
+```
+
+```bash
+helm del --purge [helm_name]
 ```
