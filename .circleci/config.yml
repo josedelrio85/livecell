@@ -9,7 +9,6 @@ jobs:
           MYSQL_DATABASE: test_db
           MYSQL_USER: user
           MYSQL_PASSWORD: passw0rd
-      - image: redis
     steps:
       - checkout
       - run:
@@ -35,7 +34,7 @@ jobs:
           name: Install MySQL CLI; Create table for tests
           command: |
             sudo apt-get install default-mysql-client
-            mysql -h ${DB_HOST} -u ${DB_USER} -p${DB_PASS} ${DB_NAME} < sql/data.sql
+            mysql -h ${DB_HOST} -u ${DB_USER} -p${DB_PASS} ${DB_NAME} < .circleci/sql/data.sql
       - run:
           name: Execute go function
           command: |
