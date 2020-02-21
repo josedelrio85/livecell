@@ -1,4 +1,3 @@
--- CREATE SCHEMA `test_db` ;
 USE `test_db`;
 
 CREATE TABLE `leadlive` (
@@ -24,6 +23,7 @@ CREATE TABLE `leadlive` (
 
 
 CREATE SCHEMA `crmti_test`;
+GRANT ALL PRIVILEGES ON `crmti_test`.* TO 'user'@'%';
 USE `crmti_test`;
 
 CREATE TABLE `que_queues` (
