@@ -23,7 +23,10 @@ CREATE TABLE `leadlive` (
 
 
 CREATE SCHEMA `crmti_test`;
+
 GRANT ALL PRIVILEGES ON `crmti_test`.* TO 'user'@'%';
+FLUSH PRIVILEGES;
+
 USE `crmti_test`;
 
 CREATE TABLE `que_queues` (
