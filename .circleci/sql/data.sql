@@ -67,7 +67,7 @@ CREATE TABLE `que_queues` (
   KEY `que_engine` (`que_engine`)
 ) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
-insert into crmti_test.que_queues (que_source, que_type, que_id) values (73,2,244);
+insert into crmti.que_queues (que_source, que_type, que_id) values (73,2,244);
 
 CREATE TABLE `sub_subcategories` (
   `sub_id` int(11) unsigned NOT NULL AUTO_INCREMENT,
@@ -87,4 +87,4 @@ CREATE TABLE `sub_subcategories` (
   KEY `sub_description` (`sub_description`)
 ) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
-insert into crmti_test.sub_subcategories (sub_id, sub_action) values (341, '{"result":"2-cierre","cierreTipo":"1-positivo"}');
+insert into crmti.sub_subcategories (sub_id, sub_action) values (341, '{"result":"2-cierre","cierreTipo":"1-positivo"}');
