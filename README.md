@@ -1,4 +1,4 @@
-# Noname API
+# Livelead API
 
 This component is responsible of receiving updates from Leontel environment. When a consultant sets a new categorization in a lead, a GET request is sended to this endpoint and after needed process (decode data, some data completion) stored in a specific environment.
 

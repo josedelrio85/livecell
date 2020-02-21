@@ -1,4 +1,4 @@
-package noname
+package livelead
 
 // Queue is a struct that represents the data of que_queues Leontel table.
 type Queue struct {

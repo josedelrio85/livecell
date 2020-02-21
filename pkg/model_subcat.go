@@ -1,4 +1,4 @@
-package noname
+package livelead
 
 // Subcat is a struct that represents the data of sub_subcategories Leontel table.
 type Subcat struct {
