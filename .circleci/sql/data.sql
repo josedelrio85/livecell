@@ -23,10 +23,6 @@ CREATE TABLE `leadlive` (
 
 
 CREATE SCHEMA `crmti`;
-
-GRANT ALL PRIVILEGES ON *.* TO 'user'@'%';
-FLUSH PRIVILEGES;
-
 USE `crmti`;
 
 CREATE TABLE `que_queues` (
@@ -41,7 +37,7 @@ CREATE TABLE `que_queues` (
   `que_stack` int(1) unsigned NOT NULL DEFAULT '0' COMMENT 'Tipo de pila 0 - fifo 1 lifo',
   `que_form` int(11) unsigned NOT NULL DEFAULT '1',
   `que_form_cli` int(11) unsigned NOT NULL DEFAULT '1',
-  `que_form_ord` int(11) NOT NULL,
+  `que_form_ord` int(11) NOT NULL  DEFAULT '0',
   `que_active` int(1) unsigned NOT NULL DEFAULT '0',
   `que_cost` float(6,4) unsigned NOT NULL DEFAULT '0.0000',
   `que_dnis` int(11) unsigned NOT NULL DEFAULT '0',
