@@ -22,12 +22,12 @@ CREATE TABLE `leadlive` (
 ) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 
-CREATE SCHEMA `crmti_test`;
+CREATE SCHEMA `crmti`;
 
-GRANT ALL PRIVILEGES ON `crmti_test`.* TO 'user'@'%';
+GRANT ALL PRIVILEGES ON *.* TO 'user'@'%';
 FLUSH PRIVILEGES;
 
-USE `crmti_test`;
+USE `crmti`;
 
 CREATE TABLE `que_queues` (
   `que_id` int(11) unsigned NOT NULL AUTO_INCREMENT,
