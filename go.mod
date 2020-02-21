@@ -1,4 +1,4 @@
-module github.com/bysidecar/noname
+module github.com/bysidecar/livelead
 
 go 1.13
 

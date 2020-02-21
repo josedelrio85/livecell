@@ -6,7 +6,7 @@ import (
 	"os"
 	"strconv"
 
-	noname "github.com/bysidecar/noname/pkg"
+	livelead "github.com/bysidecar/livelead/pkg"
 	"github.com/gorilla/mux"
 	"github.com/rs/cors"
 )
@@ -18,7 +18,7 @@ func main() {
 		log.Fatalf("Error parsing to string Datbase's port %s, Err %v", port, err)
 	}
 
-	database := &noname.Database{
+	database := &livelead.Database{
 		Host:      lookupEnv("DB_HOST"),
 		Port:      portInt,
 		User:      lookupEnv("DB_USER"),
@@ -38,13 +38,13 @@ func main() {
 		log.Fatalf("error creating table, err %v", err)
 	}
 
-	c := noname.Client{
+	c := livelead.Client{
 		Storer: database,
 	}
 
 	router := mux.NewRouter()
 
-	router.PathPrefix("/status/test").Handler(c.HandleFunction()).Methods(http.MethodGet)
+	router.PathPrefix("/lead/live").Handler(c.HandleFunction()).Methods(http.MethodGet)
 	log.Fatal(http.ListenAndServe(":4500", cors.Default().Handler(router)))
 }
 
