@@ -26,6 +26,13 @@ go run cmd/main.go
 go test ./...
 ```
 
+## Build and run dockerfile
+
+```bash
+docker image build -t livelead:[version] .
+docker container run -d --name livelead -p 4500:4500 livelead:[version]
+```
+
 ## Example GET request
 
 ```bash
