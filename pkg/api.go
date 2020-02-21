@@ -140,7 +140,7 @@ func (c *Client) process() ResultError {
 			}
 
 			if err := c.getValues(); err != nil {
-				msg := "Error retrieving Queue registry"
+				msg := "Error getting values"
 				e := &errorLogger{msg, http.StatusInternalServerError, err, logError(err)}
 				e.sendAlarm()
 				outputChannel <- ResultError{res: msg, err: err}
