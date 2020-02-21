@@ -1,4 +1,4 @@
-CREATE SCHEMA `test_db` ;
+-- CREATE SCHEMA `test_db` ;
 USE `test_db`;
 
 CREATE TABLE `leadlive` (
