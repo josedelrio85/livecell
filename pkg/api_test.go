@@ -24,6 +24,8 @@ func TestNormalizeValues(t *testing.T) {
 	ordidko := "{{ordid}}"
 	urlok := "adfasdf"
 	urlko := "{{url}}"
+	emailok := "adfasdf"
+	emailko := "{{email}}"
 
 	tests := []struct {
 		Description    string
@@ -37,12 +39,14 @@ func TestNormalizeValues(t *testing.T) {
 				Wsid:  &wsidok,
 				OrdID: &ordidok,
 				URL:   &urlok,
+				Email: &emailok,
 			},
 			Live: LeadLive{},
 			ExpectedResult: LeadLive{
 				Wsid:  234,
 				OrdID: 1,
 				URL:   &urlok,
+				Email: &emailok,
 			},
 		},
 		{
@@ -51,12 +55,14 @@ func TestNormalizeValues(t *testing.T) {
 				Wsid:  &wsidko,
 				OrdID: &ordidok,
 				URL:   &urlok,
+				Email: &emailok,
 			},
 			Live: LeadLive{},
 			ExpectedResult: LeadLive{
 				Wsid:  0,
 				OrdID: 1,
 				URL:   &urlok,
+				Email: &emailok,
 			},
 		},
 		{
@@ -65,12 +71,14 @@ func TestNormalizeValues(t *testing.T) {
 				Wsid:  &wsidok,
 				OrdID: &ordidko,
 				URL:   &urlok,
+				Email: &emailok,
 			},
 			Live: LeadLive{},
 			ExpectedResult: LeadLive{
 				Wsid:  234,
 				OrdID: 0,
 				URL:   &urlok,
+				Email: &emailok,
 			},
 		},
 		{
@@ -79,12 +87,30 @@ func TestNormalizeValues(t *testing.T) {
 				Wsid:  &wsidok,
 				OrdID: &ordidok,
 				URL:   &urlko,
+				Email: &emailok,
 			},
 			Live: LeadLive{},
 			ExpectedResult: LeadLive{
 				Wsid:  234,
 				OrdID: 1,
 				URL:   nil,
+				Email: &emailok,
+			},
+		},
+		{
+			Description: "When email is not a valid value",
+			Payload: LeadPayload{
+				Wsid:  &wsidok,
+				OrdID: &ordidok,
+				URL:   &urlok,
+				Email: &emailko,
+			},
+			Live: LeadLive{},
+			ExpectedResult: LeadLive{
+				Wsid:  234,
+				OrdID: 1,
+				URL:   &urlok,
+				Email: nil,
 			},
 		},
 	}
@@ -100,6 +126,7 @@ func TestNormalizeValues(t *testing.T) {
 			assert.Equal(test.ExpectedResult.Wsid, client.Live.Wsid)
 			assert.Equal(test.ExpectedResult.OrdID, client.Live.OrdID)
 			assert.Equal(test.ExpectedResult.URL, client.Live.URL)
+			assert.Equal(test.ExpectedResult.Email, client.Live.Email)
 		})
 	}
 }
