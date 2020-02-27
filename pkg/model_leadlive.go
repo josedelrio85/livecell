@@ -21,7 +21,7 @@ type LeadPayload struct {
 	Phone         *string `schema:"phone"`
 	URL           *string `schema:"url"` // {{
 	IsClient      bool    `schema:"is_client"`
-	Email         *string `schema:"Email,omitempty"` // {{
+	Email         *string `schema:"email,omitempty"` // {{
 }
 
 // LeadLive represents the structure of Live Lead entity
