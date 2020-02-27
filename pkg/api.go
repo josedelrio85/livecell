@@ -59,6 +59,7 @@ func (c *Client) normalizeValues() error {
 	c.Live.Phone = c.Payload.Phone
 	c.Live.IsClient = c.Payload.IsClient
 	c.Live.URL = c.Payload.URL
+	c.Live.Email = c.Payload.Email
 
 	if !strings.HasPrefix(*payload.Wsid, "{{") {
 		n, err := strconv.ParseInt(*payload.Wsid, 10, 64)
@@ -78,6 +79,10 @@ func (c *Client) normalizeValues() error {
 
 	if strings.HasPrefix(*payload.URL, "{{") {
 		c.Live.URL = nil
+	}
+
+	if strings.HasPrefix(*payload.Email, "{{") {
+		c.Live.Email = nil
 	}
 	return nil
 }
