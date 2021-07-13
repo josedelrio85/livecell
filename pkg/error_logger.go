@@ -6,7 +6,7 @@ import (
 	"net/http"
 	"runtime"
 
-	"github.com/bysidecar/voalarm"
+	"github.com/josedelrio85/voalarm"
 )
 
 // errorLogger is a struct to handle error properties

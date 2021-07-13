@@ -6,8 +6,8 @@ import (
 	"os"
 	"strconv"
 
-	livelead "github.com/bysidecar/livelead/pkg"
 	"github.com/gorilla/mux"
+	livelead "github.com/josedelrio85/livelead/pkg"
 	"github.com/rs/cors"
 )
 
