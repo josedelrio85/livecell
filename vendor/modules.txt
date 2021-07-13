@@ -1,7 +1,7 @@
 # github.com/DATA-DOG/go-sqlmock v1.3.3
 github.com/DATA-DOG/go-sqlmock
-# github.com/bysidecar/voalarm v1.0.1
-github.com/bysidecar/voalarm
+# github.com/josedelrio85/voalarm v1.0.1
+github.com/josedelrio85/voalarm
 # github.com/davecgh/go-spew v1.1.1
 github.com/davecgh/go-spew/spew
 # github.com/go-sql-driver/mysql v1.4.1

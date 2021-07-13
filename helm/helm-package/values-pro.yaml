@@ -23,7 +23,7 @@ ingress:
     # kubernetes.io/ingress.class: nginx
     # kubernetes.io/tls-acme: "true"
   hosts:
-    - host: livelead.bysidecar.me
+    - host: livelead.josedelrio85.me
       paths:
         - /
 

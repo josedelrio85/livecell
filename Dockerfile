@@ -8,8 +8,8 @@ RUN apk update && apk add --no-cache \
   && update-ca-certificates
 
 # Add source files and set the proper work dir
-COPY . $GOPATH/src/github.com/bysidecar/livelead/
-WORKDIR $GOPATH/src/github.com/bysidecar/livelead/cmd
+COPY . $GOPATH/src/github.com/josedelrio85/livelead/
+WORKDIR $GOPATH/src/github.com/josedelrio85/livelead/cmd
 
 
 # Enable Go modules

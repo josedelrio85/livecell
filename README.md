@@ -37,7 +37,7 @@ curl -G /
 ```bash
 curl -G /
 -d "lea_id=12345&cat=6&subcat=341&queue=78&ws_id={{wsid}}&ord_id={{order}}&is_client=0&phone=666666666&url={{url}}"
-"http://livelead-pre.bysidecar.me/lead/live"
+"http://livelead-pre.josedelrio85.me/lead/live"
 ```
 
 ## Build and run dockerfile
